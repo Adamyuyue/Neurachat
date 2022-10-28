@@ -20,19 +20,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$o21tq^(08+6w2xq%x!o8vs!5)!%_oeoy+v27h&%4xb37@#_ib'
+SECRET_KEY = 'i_8$e&=cfr5bd1r(@^@gd@2y@+0@i0%ldpeke108o+pux&hsn4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '192.168.33.10', 'localhost']
-INTERNAL_IPS = ['10.0.2.2']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    # django packages
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,19 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # third party packages
+    # third party
     'rest_framework',
-    'debug_toolbar',
     'django_filters',
     'notifications',
 
     # project apps
+    'accounts',
     'tweets',
     'friendships',
     'newsfeeds',
-    "comments",
-    "likes",
-    "inbox",
+    'comments',
+    'likes',
 ]
 
 REST_FRAMEWORK = {
@@ -71,7 +68,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'twitter.urls'
@@ -102,13 +98,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'twitter',
-        'HOST': 'localhost',
+        'HOST': '0.0.0.0',
         'PORT': '3306',
         'USER': 'root',
-        "PASSWORD": 'yourpassword'
+        'PASSWORD': 'yourpassword',    # 这里是自己下载mysql时候输入两次的那个密码
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -152,4 +147,3 @@ try:
     from .local_settings import *
 except:
     pass
-
