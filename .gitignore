@@ -2,6 +2,7 @@
 .vagrant
 Vagrantfile
 .idea
+media/
 .pycharm_helpers
 
 # Byte-compiled / optimized / DLL files
