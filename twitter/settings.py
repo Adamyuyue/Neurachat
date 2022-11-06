@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
 import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -153,8 +152,8 @@ if TESTING:
 
 # 当用s3boto3 作为用户上传文件存储时，需要按照你在 AWS 上创建的配置来设置你的 BUCKET_NAME
 # 和 REGION_NAME，这个值你可以改成你自己创建的 bucket 的名字和所在的 region
-AWS_STORAGE_BUCKET_NAME = 'django-neurachat'
-AWS_S3_REGION_NAME = 'us-east-2'
+AWS_STORAGE_BUCKET_NAME = 'django-twitter'
+AWS_S3_REGION_NAME = 'us-west-1'
 
 # 你还需要在 local_settings.py 中设置你的 AWS_ACCESS_KEY_ID 和 AWS_SECRET_ACCESS_KEY
 # 因为这是比较机密的信息，是不适合放在 settings.py 这种共享的配置文件中共享给所有开发者的
@@ -173,7 +172,8 @@ AWS_S3_REGION_NAME = 'us-east-2'
 MEDIA_ROOT = 'media/'
 
 # https://docs.djangoproject.com/en/3.1/topics/cache/
-# use `pip install python-memcached`
+# memcached 安装方法: apt-get install memcached
+# 然后安装 python 的 memcached 客户端：use `pip install python-memcached`
 # DO NOT pip install memcache or django-memcached
 CACHES = {
     'default': {
@@ -196,6 +196,7 @@ REDIS_HOST = '127.0.0.1'
 REDIS_PORT = 6379
 REDIS_DB = 0 if TESTING else 1
 REDIS_KEY_EXPIRE_TIME = 7 * 86400  # in seconds
+REDIS_LIST_LENGTH_LIMIT = 1000 if not TESTING else 20
 
 try:
     from .local_settings import *
