@@ -46,6 +46,7 @@ class TweetSerializer(serializers.ModelSerializer):
 
 
 class TweetSerializerForDetail(TweetSerializer):
+    # could use serializers.SerializerMethodField to get comments as well.
     comments = CommentSerializer(source='comment_set', many=True)
     likes = LikeSerializer(source='like_set', many=True)
 
